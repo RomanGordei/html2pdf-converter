@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  html2pdf:
+    build: .
+    container_name: html2pdf-converter
+    ports:
+      - "5001:5000"
+    environment:
+      - FLASK_ENV=production
+    restart: unless-stopped

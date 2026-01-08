@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML → PDF Конвертер</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <h1>HTML → PDF</h1>
+            </div>
+            <p class="subtitle">Быстрая конвертация HTML-файлов в PDF</p>
+        </header>
+
+        <main>
+            <!-- Зона загрузки -->
+            <div class="upload-zone" id="uploadZone">
+                <div class="upload-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                </div>
+                <p class="upload-text">Перетащите HTML-файлы сюда</p>
+                <p class="upload-hint">или</p>
+                <label class="upload-button">
+                    <input type="file" id="fileInput" multiple accept=".html,.htm" hidden>
+                    <span>Выбрать файлы</span>
+                </label>
+                <p class="upload-formats">Поддерживаемые форматы: .html, .htm</p>
+            </div>
+
+            <!-- Список выбранных файлов -->
+            <div class="files-section" id="filesSection" style="display: none;">
+                <div class="section-header">
+                    <h2>Выбранные файлы</h2>
+                    <button class="btn-clear" id="clearFiles">Очистить</button>
+                </div>
+                <ul class="file-list" id="fileList"></ul>
+                <button class="btn-convert" id="convertBtn">
+                    <span class="btn-text">Конвертировать</span>
+                    <span class="btn-loader" style="display: none;">
+                        <svg class="spinner" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4 31.4"/>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+
+            <!-- Результаты -->
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="section-header">
+                    <h2>Готовые файлы</h2>
+                    <button class="btn-download-all" id="downloadAll">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7 10 12 15 17 10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Скачать всё (.zip)
+                    </button>
+                </div>
+                <ul class="result-list" id="resultList"></ul>
+                <button class="btn-new" id="newConversion">Конвертировать ещё</button>
+            </div>
+
+            <!-- Ошибки -->
+            <div class="errors-section" id="errorsSection" style="display: none;">
+                <h3>⚠️ Предупреждения</h3>
+                <ul class="error-list" id="errorList"></ul>
+            </div>
+        </main>
+
+        <footer>
+            <p>Сделано с ❤️ для удобной работы с документами</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
