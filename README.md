@@ -26,7 +26,7 @@ cd html2pdf-converter
 # Запускаем
 docker-compose up -d
 
-# Готово! Открываем http://localhost:5000
+# Готово! Открываем http://localhost:5001
 ```
 
 ### Вариант 2: Локальный запуск
